@@ -62,3 +62,44 @@ node --check web/js/app.js
 ```
 
 El último comando crea una carpeta nueva y 15 ejecuciones nuevas; no sobrescribe esta evidencia. En Git Bash sustituye el ejecutable por `./.venv/Scripts/python.exe`. Para generar el reporte XML añade `--junitxml=<ruta-nueva>.xml`. La instalación y la demostración están en el README.
+
+## Condiciones, resultados e interpretación — entregable 3
+
+La siguiente lectura conserva las evidencias anteriores y explicita los tres elementos que Classroom pide para cada prueba. «Escenario base» incluye las cinco exclusiones originales; no se presenta como una ejecución histórica anterior a incorporarlas. Salvo donde se indica otra cosa, los experimentos usan ocho satélites, 120 generaciones, población 70, mutación 0.22 y radio 300 km. Los archivos individuales conservan las coordenadas y métricas; no se deducen resultados únicamente de la imagen del globo.
+
+| Prueba exigida | Condiciones y evidencia | Resultado real | Interpretación |
+|---|---|---|---|
+| Escenario inicial | Semilla 42, escenario base; [resultado base][base42], campos `initial`, `initial_metrics`, `best`, `metrics` | La mejor inicial cubre Yucatán, Amazonía, California, Sahel y Japón; falta Australia: 92.31%. La final cubre las seis: 100%; ambas válidas | La búsqueda mejora una configuración ya buena. «Inicial» significa la mejor de 70, no una muestra aislada |
+| Evolución | Mismo [resultado base][base42], campo `history` | 121 registros: aptitud 92.3077 en generación 0 y 100 desde generación 1 | Hay una mejora registrada antes de la meseta. No se infiere optimalidad global de que después deje de mejorar |
+| Tres zonas restringidas | Prueba `test_each_exclusion_affects_generation_and_validation`, casos `atlantic`, `south_pacific`, `north_polar`; semilla 42 y 25 puntos por caso, dirigidos alrededor de cada centro; [código][evolution-test] y [reporte][pytest-report] | Cada centro se rechaza; los 25 puntos generados por caso cumplen las cinco exclusiones y hay más de una posición distinta | Las zonas afectan a la generación, además de la validación; estos casos son de posiciones, complementados por las constelaciones válidas guardadas |
+| Dos posiciones ocupadas | Misma prueba y condiciones, casos `object_a` y `object_b`; [código][evolution-test] y [reporte][pytest-report] | Sus centros se rechazan y los 25 puntos por caso son válidos y no todos iguales | Los objetos existentes tienen efecto real en la búsqueda y no son solo marcadores gráficos |
+| Espacio reducido | Semilla 42 y exclusión adicional de 6° sobre Yucatán; [resultado reducido][reduced42]. También se ejecutaron semillas 43–46 | 5/6 regiones; falta Yucatán; 76.92% de cobertura ponderada, aptitud 76.9231, cero infracciones | Mantener validez puede exigir renunciar a un objetivo bloqueado. La cobertura parcial no es éxito completo |
+| Condición difícil o inviable | Semilla 42, dos generaciones, población 4 y dos exclusiones antipodales de 100°; [fallo guardado][blocked] | `generation_failed`, con escenario y parámetros, sin posiciones finales inventadas | El programa termina sin reintentos ilimitados. La geometría explica este bloqueo particular; el mensaje de muestreo no constituye un demostrador general de inviabilidad |
+| Variación entre ejecuciones | Semillas 42–46, mismas condiciones base; [resumen][summary] | Cinco configuraciones finales distintas, todas válidas con 100. Semillas 43–46 ya comienzan en 100. Repetir 42 reproduce posiciones e historia | La puntuación final coincide, pero el recorrido y las posiciones varían. Cinco muestras no garantizan robustez universal |
+| Prueba adicional propia | `test_dateline_and_coverage_threshold_additional`; región en (0°,0°), peso 1, ocho posiciones a 299.999 km o 300.001 km, IDs distintos; [código][evolution-test] y [reporte][pytest-report] | El primer caso cubre y el segundo no. Además, la distancia angular entre (0°,179°) y (0°,−179°) es aproximadamente 2° | El umbral depende de la distancia esférica, no del aspecto de la imagen ni de restar longitudes sin considerar la línea de cambio de fecha |
+
+Los casos Python y JavaScript se ejecutaron nuevamente durante esta revisión documental: 76 y seis aprobados, respectivamente, sin reemplazar los reportes guardados ni crear otro lote de resultados. Los valores de la tabla proceden de los JSON y pruebas indicados. Las condiciones que cambian prioridades, la comparación de mutación y los límites de interpretación se conservan en el [análisis](analisis_resultados.md).
+
+### Cambio de escenario sobre una solución ya calculada
+
+Además de revisar búsquedas nuevas, se reevaluó en memoria la configuración `best` del [resultado base de semilla 42][base42], sin modificar sus coordenadas: bajo las exclusiones originales sigue válida; al cambiar solo prioridades también; al añadir la exclusión de Yucatán, `SAT-03` la invade y la configuración se vuelve inválida. La cobertura geométrica sigue en 100%, pero la aptitud baja a 80 y el estado es `invalid`. Esta comprobación usa `evaluate_constellation` con una copia del escenario; no es una nueva ejecución evolutiva ni altera el JSON fuente. El [análisis de esta revalidación](analisis_resultados.md#revalidación-de-una-configuración-anterior--classroom-33) explica por qué no basta conservar una puntuación alta.
+
+### Qué falta para acreditar todos los entregables
+
+| Entregable de Classroom | Ubicación y alcance comprobado |
+|---|---|
+| 1. Definición del problema | [Definición y justificación](definicion_problema.md): representación, cobertura, aptitud, invalidez, operadores, parámetros y objetivo suficiente. No se acredita retrospectivamente que se redactara antes de programar |
+| 2. Implementación funcional | Código `src/`, `app.py` y `web/`; pruebas automáticas y reporte HTTP enlazados arriba. Esta revisión no modifica la implementación |
+| 3. Pruebas y validación | Este documento, tabla de condiciones/resultados/interpretación, reportes y JSON existentes |
+| 4. Análisis de resultados | [Análisis](analisis_resultados.md): evolución, semillas, restricciones, prioridades, fallo y comparación justificada de soluciones |
+| 5. Visualización 3D | Código y pruebas de comportamiento disponibles; sigue pendiente la verificación real del renderizado, giro, cobertura y correspondencia visual, según los informes de navegador fallidos |
+| 6. Repositorio y presentación | [README](../README.md): instalación, ejecución y demostración. El historial registra cambios; la explicación y demostración de cada integrante aún debe realizarse, sin inventar aportaciones ni reconstruir artificialmente commits |
+
+La rúbrica asigna 40% a funcionamiento, 25% a pruebas, 20% a comprensión/personalización y 15% a organización/Git. Esta tabla organiza evidencias, no asigna una calificación ni da por aprobada la parte visual pendiente. Se conserva el diseño actual; justificarlo durante la presentación no requiere rediseñar la aplicación.
+
+[base42]: ../results/evidence_20261025_032443_774927_fa6eaea1/astroshield_20261025_032445_043774_9e6a03920be9490e928d460540353e90.json
+[reduced42]: ../results/evidence_20261025_032443_774927_fa6eaea1/astroshield_20261025_032451_614816_9f1f5ab5a0574185b635abacd88eee96.json
+[blocked]: ../results/evidence_20261025_032443_774927_fa6eaea1/astroshield_20261025_032459_539784_db01b93dfdd34517a3a7676b4f508cf7.json
+[summary]: ../results/evidence_20261025_032443_774927_fa6eaea1/summary.json
+[evolution-test]: ../tests/test_evolution.py
+[pytest-report]: ../results/evidence_20261025_032443_774927_fa6eaea1/pytest.xml

@@ -54,3 +54,46 @@ Geométricamente esas dos zonas cubren toda la esfera: si un punto queda a ≥10
 - La aptitud informa rendimiento de este modelo. Estancarse no prueba un óptimo global; cubrir todos los centros válidamente alcanza el techo conocido de esta métrica, sin implicaciones para un sistema físico.
 - Los resultados son reproducibles con el código y parámetros de esta ronda. La ampliación del dominio de latitud cambió la secuencia respecto de la versión auditada; no deben compararse semillas de versiones distintas como si fueran ejecuciones idénticas.
 - Las pruebas de comportamiento de interfaz aprobaron. La comprobación visual real quedó pendiente porque Chrome y Edge no respondieron al canal de control y la ejecución fuera del sandbox no fue autorizada. No se afirma que arrastre, zoom o descarga real hayan sido probados visualmente.
+
+## Revalidación de una configuración anterior — Classroom 3.3
+
+Para responder si una configuración anterior sigue siendo válida cuando cambian las condiciones, esta revisión documental tomó `best` del [JSON base de semilla 42](../results/evidence_20261025_032443_774927_fa6eaea1/astroshield_20261025_032445_043774_9e6a03920be9490e928d460540353e90.json) y lo evaluó con el código actual, sin mover satélites ni volver a ejecutar la búsqueda. Se usó `evaluate_constellation` con copias de `scenario`; en la segunda evaluación se cambió Yucatán a Normal/1 y Australia a Alta/3, y en la tercera se conservaron las prioridades originales y se añadió la exclusión `stress_yucatan` de 6° en (20.5°,−89°). No se modificó el archivo fuente ni se generó otro JSON de resultados.
+
+| Condiciones aplicadas a las mismas posiciones | Cobertura ponderada | Aptitud | Validez y estado |
+|---|---:|---:|---|
+| Escenario original | 100% | 100 | Válida, `complete` |
+| Solo cambio de prioridades | 100% | 100 | Válida, `complete` |
+| Nueva exclusión de Yucatán, pesos originales | 100% | 80 | Inválida, `invalid`: `SAT-03` invade la nueva exclusión |
+
+Cambiar prioridades no altera las restricciones y, al estar todas las regiones cubiertas, tampoco cambia esta puntuación normalizada. Añadir la zona sí invalida las posiciones anteriores. El evaluador sigue contando cobertura por cercanía incluso para un satélite infractor; el estado inválido impide aceptar esa cobertura como solución. Este resultado confirma por qué puntuación y validez se informan por separado.
+
+La nueva búsqueda reducida ya guardada encuentra posiciones distintas y admitidas, pero pierde Yucatán: 76.92% y aptitud 76.9231. Tiene menos puntuación que las posiciones anteriores infractoras (80), y aun así es la alternativa admisible. No corresponde declarar mejor una solución prohibida solo porque puntúe más.
+
+Para repetir la tercera fila sin escribir archivos, abre el intérprete desde la raíz con `.\.venv\Scripts\python.exe -B` en PowerShell o `./.venv/Scripts/python.exe -B` en Git Bash y pega estas instrucciones Python:
+
+```python
+import json
+from copy import deepcopy
+from pathlib import Path
+from src.core.fitness import evaluate_constellation
+
+carpeta = Path("results/evidence_20261025_032443_774927_fa6eaea1")
+resumen = json.loads((carpeta / "summary.json").read_text(encoding="utf-8"))
+caso = next(c for c in resumen["cases"] if c["label"] == "base_seed_42")
+resultado = json.loads((carpeta / caso["file"]).read_text(encoding="utf-8"))
+escenario = deepcopy(resultado["scenario"])
+escenario["restricted_zones"].append(dict(id="stress_yucatan", name="Zona experimental sobre Yucatan", lat=20.5, lon=-89.0, radius_deg=6.0))
+metricas = evaluate_constellation(resultado["best"], **escenario)
+print(metricas["status"], metricas["fitness"], metricas["weighted_coverage_pct"])
+print(metricas["validation"])
+```
+
+Debe imprimir `invalid 80.0 100.0` y la infracción de `SAT-03`. Las dos primeras filas usan el mismo evaluador sin añadir la zona y, en su caso, cambiando los dos pesos indicados. Usa `quit()` para salir del intérprete.
+
+## Qué evidencia permite comparar soluciones — entregable 4
+
+Primero se exige validez; después se compara cobertura ponderada bajo el **mismo escenario y los mismos pesos**. La población inicial y final de semilla 42 cumplen ambas la validez y usan el mismo criterio: la final añade Australia y mejora de 92.3077 a 100. Esa comparación sí demuestra una mejora dentro del modelo, respaldada por los campos de regiones y la historia del JSON.
+
+Las cinco semillas base terminan empatadas en aptitud y validez: las coordenadas distintas no prueban que una sea superior, pues la función no mide redundancia ni otros criterios orbitales. Tampoco se deben ordenar directamente 76.92% y 92.31% de los experimentos reducidos como si hubiera mejorado la colocación: cambiaron los pesos y las posiciones fueron iguales. La comparación de mutación con una sola semilla sigue siendo exploratoria.
+
+La justificación de **por qué** se eligieron representación, pesos y operadores pertenece a la [definición del problema](definicion_problema.md#justificación-técnica-del-modelo-actual--entregable-1). Las conclusiones de este documento se limitan a **qué muestran** las ejecuciones y revalidaciones citadas. No hay referencias externas ni verificación visual adicional que sustenten afirmaciones más amplias.

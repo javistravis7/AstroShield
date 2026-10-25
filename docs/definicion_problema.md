@@ -71,3 +71,25 @@ Cada resultado nuevo (`schema_version: 2`) incluye semilla realmente usada, par�
 Los JSON anteriores se conservan. No tienen `initial_metrics` ni algunos metadatos nuevos: la visualización permite la vista final cuando existe escenario e informa que no dispone de comparación inicial. Sin escenario no se puede visualizar de forma fiable. No se añadió un importador de archivos a la interfaz. Semillas antiguas `null` no permiten reconstruir exactamente su azar.
 
 La condición suficiente de la actividad es `complete`. No mejorar durante varias generaciones no demuestra un óptimo global. El modelo tiene un techo de puntuación conocido (100 con cero infracciones), pero no permite conclusiones sobre un sistema orbital físico.
+
+## Justificación técnica del modelo actual — entregable 1
+
+Esta sección complementa las explicaciones anteriores frente a Classroom. Expone razones técnicas coherentes con la implementación; no atribuye motivaciones a un integrante ni afirma que exista evidencia de que el documento se redactó antes de programar. Los resultados que permiten valorar estas decisiones se presentan por separado en el [análisis de resultados](analisis_resultados.md).
+
+| Decisión implementada | Justificación y límite |
+|---|---|
+| Ocho pares de latitud/longitud en una esfera | Conserva una sola configuración con los ocho recursos exigidos y permite usar las mismas coordenadas en evaluación y globo. La simplificación evita introducir una dinámica orbital que Classroom no exige |
+| Cobertura binaria del centro a ≤300 km | Define una regla verificable de sí/no a partir del radio inicial de Classroom. Es una interpretación del equipo plasmada en el código, no una afirmación de cobertura completa de la superficie regional |
+| Pesos 3, 2 y 1 | Conserva el orden Alta > Media > Normal y hace explícito que una región Alta aporta tres veces el peso de una Normal. La escala es una elección del modelo, no una proporción dictada por Classroom ni una calibración empírica |
+| Cobertura normalizada como objetivo | Evita premiar repetidamente una región cubierta por varios satélites y permite interpretar el resultado como porcentaje. No recompensa redundancia, continuidad temporal ni acercarse a un centro si aún queda fuera de 300 km |
+| Rechazo de posiciones prohibidas y bandera de validez | Trata las exclusiones como obligatorias. La penalización de 20 hace visible una infracción al evaluar una configuración externa, pero no basta por sí sola para garantizar que toda solución inválida puntúe menos que una válida; por eso nunca reemplaza la validación |
+| Torneos, cruce y mutación | Los torneos favorecen configuraciones de mayor aptitud; el cruce reutiliza posiciones admitidas; la mutación incorpora posiciones nuevas. La selección entre la mitad superior aumenta la presión selectiva y puede reducir diversidad: no garantiza explorar todas las alternativas |
+| Dos élites | Evita perder el mejor valor al reemplazar la población. También puede mantener las mismas posiciones durante muchos empates; conservar aptitud no demuestra diversidad |
+| Población 70, 120 generaciones y mutación 0.22 | Fija un presupuesto reproducible y configurable de búsqueda. La mutación implica, en promedio, 8 × 0.22 = 1.76 reemplazos por hijo antes de considerar los individuos élite. Son valores iniciales prácticos, no parámetros cuya optimalidad se haya demostrado; el análisis disponible solo compara dos tasas con una semilla |
+| Objetivo suficiente: ocho posiciones válidas y seis regiones cubiertas | Separa satisfacer la actividad de simplemente terminar una ejecución. Un resultado parcial se conserva como evidencia útil, pero no se presenta como objetivo cumplido |
+
+La elección 82% dirigida / 18% global y la desviación 2° ya se justifican en «Algoritmo y decisiones». La conveniencia del presupuesto de búsqueda y la estabilidad de las soluciones deben juzgarse con las ejecuciones documentadas, no deducirse de esta justificación.
+
+### Qué significa cambiar las condiciones
+
+Cambiar solo los pesos modifica la evaluación, pero no las distancias ni las exclusiones: una configuración espacialmente válida sigue siendo válida. Añadir o ampliar exclusiones obliga a validar otra vez las posiciones anteriores; una configuración que antes cumplía puede volverse inválida. Ejecutar otra búsqueda y reevaluar la configuración anterior son comprobaciones diferentes. La [revalidación documentada](analisis_resultados.md#revalidación-de-una-configuración-anterior--classroom-33) muestra ambas situaciones con un resultado guardado, sin mover sus satélites.

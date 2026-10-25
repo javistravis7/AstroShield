@@ -265,6 +265,8 @@ Los intentos registrados con Chrome y Edge terminaron en `CDP timeout: Page.enab
 
 ## 11. Resultados, evidencias y documentación
 
+Para revisar la entrega frente a Classroom, consulta la [correspondencia de los seis entregables y sus pendientes](docs/pruebas.md#qué-falta-para-acreditar-todos-los-entregables). La [definición](docs/definicion_problema.md#justificación-técnica-del-modelo-actual--entregable-1) explica las decisiones del modelo; las [pruebas](docs/pruebas.md#condiciones-resultados-e-interpretación--entregable-3) registran condiciones, resultados e interpretación; el [análisis](docs/analisis_resultados.md#qué-evidencia-permite-comparar-soluciones--entregable-4) explica qué comparaciones permiten defender una solución. Allí se documenta también si una configuración anterior sigue siendo válida al cambiar las restricciones, sin duplicar aquí las explicaciones especializadas.
+
 | Ubicación | Contenido |
 |---|---|
 | [Definición del problema](docs/definicion_problema.md) | Fórmulas, supuestos, límites de entradas, operadores y estados |
