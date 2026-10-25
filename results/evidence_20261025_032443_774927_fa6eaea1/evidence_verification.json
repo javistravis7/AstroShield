@@ -1,0 +1,76 @@
+[
+  {
+    "case": "base_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "base_seed_43",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "base_seed_44",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "base_seed_45",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "base_seed_46",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "repeat_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "reduced_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "reduced_seed_43",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "reduced_seed_44",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "reduced_seed_45",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "reduced_seed_46",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "changed_priorities_reduced_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "mutation_0.05_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "mutation_0.4_seed_42",
+    "initial_and_final_recomputed": true,
+    "history_endpoints_match": true
+  },
+  {
+    "case": "blocked_sphere_admitted_radii",
+    "failure_context_present": true
+  }
+]

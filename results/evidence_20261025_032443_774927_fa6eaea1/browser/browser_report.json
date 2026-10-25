@@ -1,0 +1,8 @@
+{
+  "started_at_utc": "2026-10-25T03:26:35.585Z",
+  "browser": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "checks": [],
+  "errors": [],
+  "status": "failed_or_unavailable",
+  "error": "Error: CDP timeout: Page.enable"
+}

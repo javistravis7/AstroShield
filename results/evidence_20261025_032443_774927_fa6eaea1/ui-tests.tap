@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: initial/final synchronize metrics, positions, coverage, table, legend and full-run curve
+ok 1 - initial/final synchronize metrics, positions, coverage, table, legend and full-run curve
+  ---
+  duration_ms: 18.7626
+  type: 'test'
+  ...
+# Subtest: legacy initial view is explicitly unavailable, exports preserve original result
+ok 2 - legacy initial view is explicitly unavailable, exports preserve original result
+  ---
+  duration_ms: 6.0446
+  type: 'test'
+  ...
+# Subtest: comparison holds controls through all five requests and blocks scenario changes and overlaps
+ok 3 - comparison holds controls through all five requests and blocks scenario changes and overlaps
+  ---
+  duration_ms: 9.671
+  type: 'test'
+  ...
+# Subtest: network failure restores controls and leaves previous identified result
+ok 4 - network failure restores controls and leaves previous identified result
+  ---
+  duration_ms: 4.0261
+  type: 'test'
+  ...
+# Subtest: partial coverage is never labelled objective fulfilled
+ok 5 - partial coverage is never labelled objective fulfilled
+  ---
+  duration_ms: 2.1607
+  type: 'test'
+  ...
+# Subtest: only the violated exclusion is marked when names repeat
+ok 6 - only the violated exclusion is marked when names repeat
+  ---
+  duration_ms: 1.4215
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 129.0031

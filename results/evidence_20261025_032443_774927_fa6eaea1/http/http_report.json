@@ -1,0 +1,154 @@
+{
+  "executed_at_utc": "2026-10-25T03:33:05.808703+00:00",
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 11152
+    },
+    {
+      "route": "/api/scenario",
+      "status": 200,
+      "bytes": 1283
+    },
+    {
+      "route": "/js/app.js",
+      "status": 200,
+      "bytes": 21893
+    },
+    {
+      "route": "/css/styles.css",
+      "status": 200,
+      "bytes": 14676
+    },
+    {
+      "route": "/api/optimize",
+      "status": 200,
+      "result": "results\\evidence_20261025_032443_774927_fa6eaea1\\http\\astroshield_20261025_033307_094017_7c6b565ea88b40738330d80c023d5103.json",
+      "initial_fitness": 92.3077,
+      "final_fitness": 100.0
+    },
+    {
+      "case": "empty_regions",
+      "status": 400,
+      "body": {
+        "error": "Regiones: debe ser una lista de 1 a 64 elementos."
+      }
+    },
+    {
+      "case": "busy",
+      "status": 409,
+      "body": {
+        "error": "Ya hay una optimización en curso. Espera a que termine."
+      }
+    },
+    {
+      "case": "blocked_sphere",
+      "status": 422,
+      "body": {
+        "error": "Se agotaron 500 intentos y los centros regionales sin generar una posición válida. Esto no demuestra inviabilidad matemática; revisa el escenario o prueba otra semilla.",
+        "parameters": {
+          "directed_probability": 0.82,
+          "directed_std_deg": 2.0,
+          "generations": 2,
+          "mutation_rate": 0.22,
+          "observation_radius_km": 300.0,
+          "population_size": 4,
+          "requested_seed": 42,
+          "sampling_attempts": 500,
+          "satellite_count": 8,
+          "seed": 42
+        },
+        "scenario": {
+          "occupied_objects": [
+            {
+              "id": "object_a",
+              "kind": "Posición ocupada",
+              "lat": 10.0,
+              "lon": 45.0,
+              "name": "Objeto A",
+              "radius_deg": 5.0
+            },
+            {
+              "id": "object_b",
+              "kind": "Posición ocupada",
+              "lat": -15.0,
+              "lon": 110.0,
+              "name": "Objeto B",
+              "radius_deg": 5.0
+            }
+          ],
+          "regions": [
+            {
+              "id": "yucatan",
+              "lat": 20.5,
+              "lon": -89.0,
+              "name": "Península de Yucatán",
+              "priority": "Alta",
+              "weight": 3
+            },
+            {
+              "id": "amazonia",
+              "lat": -3.5,
+              "lon": -62.0,
+              "name": "Amazonía brasileña",
+              "priority": "Alta",
+              "weight": 3
+            },
+            {
+              "id": "california",
+              "lat": 36.8,
+              "lon": -119.4,
+              "name": "California",
+              "priority": "Media",
+              "weight": 2
+            },
+            {
+              "id": "sahel",
+              "lat": 15.0,
+              "lon": 0.0,
+              "name": "Región del Sahel",
+              "priority": "Media",
+              "weight": 2
+            },
+            {
+              "id": "japan",
+              "lat": 36.0,
+              "lon": 138.0,
+              "name": "Japón",
+              "priority": "Media",
+              "weight": 2
+            },
+            {
+              "id": "australia",
+              "lat": -25.0,
+              "lon": 133.0,
+              "name": "Interior de Australia",
+              "priority": "Normal",
+              "weight": 1
+            }
+          ],
+          "restricted_zones": [
+            {
+              "id": "0",
+              "lat": 0,
+              "lon": 0,
+              "name": "block 0",
+              "radius_deg": 100
+            },
+            {
+              "id": "1",
+              "lat": 0,
+              "lon": 180,
+              "name": "block 1",
+              "radius_deg": 100
+            }
+          ]
+        },
+        "schema_version": 2,
+        "status": "generation_failed"
+      }
+    }
+  ],
+  "status": "passed"
+}

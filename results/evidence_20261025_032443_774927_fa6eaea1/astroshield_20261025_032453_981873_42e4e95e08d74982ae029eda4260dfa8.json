@@ -1,0 +1,1377 @@
+{
+  "schema_version": 2,
+  "status": "partial",
+  "best": [
+    {
+      "id": "SAT-01",
+      "lat": -2.918089534593517,
+      "lon": -60.567390773803425
+    },
+    {
+      "id": "SAT-02",
+      "lat": -21.92628628890149,
+      "lon": 133.74474934163777
+    },
+    {
+      "id": "SAT-03",
+      "lat": -24.276064788476436,
+      "lon": 131.22066479057656
+    },
+    {
+      "id": "SAT-04",
+      "lat": 12.89378655109283,
+      "lon": -1.336153899905554
+    },
+    {
+      "id": "SAT-05",
+      "lat": 18.26429326506865,
+      "lon": -0.13317728750945435
+    },
+    {
+      "id": "SAT-06",
+      "lat": 20.925412979204282,
+      "lon": 170.40496812902262
+    },
+    {
+      "id": "SAT-07",
+      "lat": 37.582034878170184,
+      "lon": -118.21321887644632
+    },
+    {
+      "id": "SAT-08",
+      "lat": 34.48786505981415,
+      "lon": 136.00461672017724
+    }
+  ],
+  "initial": [
+    {
+      "id": "SAT-01",
+      "lat": -2.918089534593517,
+      "lon": -60.567390773803425
+    },
+    {
+      "id": "SAT-02",
+      "lat": -21.92628628890149,
+      "lon": 133.74474934163777
+    },
+    {
+      "id": "SAT-03",
+      "lat": -24.276064788476436,
+      "lon": 131.22066479057656
+    },
+    {
+      "id": "SAT-04",
+      "lat": 12.89378655109283,
+      "lon": -1.336153899905554
+    },
+    {
+      "id": "SAT-05",
+      "lat": 18.26429326506865,
+      "lon": -0.13317728750945435
+    },
+    {
+      "id": "SAT-06",
+      "lat": 20.925412979204282,
+      "lon": 170.40496812902262
+    },
+    {
+      "id": "SAT-07",
+      "lat": 37.582034878170184,
+      "lon": -118.21321887644632
+    },
+    {
+      "id": "SAT-08",
+      "lat": 34.48786505981415,
+      "lon": 136.00461672017724
+    }
+  ],
+  "initial_metrics": {
+    "fitness": 76.9231,
+    "weighted_coverage_pct": 76.92,
+    "covered_count": 5,
+    "total_regions": 6,
+    "covered_region_ids": [
+      "amazonia",
+      "california",
+      "sahel",
+      "japan",
+      "australia"
+    ],
+    "uncovered_region_ids": [
+      "yucatan"
+    ],
+    "regions": [
+      {
+        "id": "yucatan",
+        "name": "Península de Yucatán",
+        "priority": "Alta",
+        "weight": 3,
+        "covered": false,
+        "nearest_distance_km": 3393.41,
+        "nearest_satellite": "SAT-07",
+        "radius_km": 300.0,
+        "lat": 20.5,
+        "lon": -89.0
+      },
+      {
+        "id": "amazonia",
+        "name": "Amazonía brasileña",
+        "priority": "Alta",
+        "weight": 3,
+        "covered": true,
+        "nearest_distance_km": 171.71,
+        "nearest_satellite": "SAT-01",
+        "radius_km": 300.0,
+        "lat": -3.5,
+        "lon": -62.0
+      },
+      {
+        "id": "california",
+        "name": "California",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 136.43,
+        "nearest_satellite": "SAT-07",
+        "radius_km": 300.0,
+        "lat": 36.8,
+        "lon": -119.4
+      },
+      {
+        "id": "sahel",
+        "name": "Región del Sahel",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 275.02,
+        "nearest_satellite": "SAT-04",
+        "radius_km": 300.0,
+        "lat": 15.0,
+        "lon": 0.0
+      },
+      {
+        "id": "japan",
+        "name": "Japón",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 247.19,
+        "nearest_satellite": "SAT-08",
+        "radius_km": 300.0,
+        "lat": 36.0,
+        "lon": 138.0
+      },
+      {
+        "id": "australia",
+        "name": "Interior de Australia",
+        "priority": "Normal",
+        "weight": 1,
+        "covered": true,
+        "nearest_distance_km": 197.03,
+        "nearest_satellite": "SAT-03",
+        "radius_km": 300.0,
+        "lat": -25.0,
+        "lon": 133.0
+      }
+    ],
+    "validation": {
+      "valid": true,
+      "violations": [],
+      "violation_count": 0,
+      "errors": []
+    },
+    "valid": true,
+    "observation_radius_km": 300.0,
+    "status": "partial"
+  },
+  "metrics": {
+    "fitness": 76.9231,
+    "weighted_coverage_pct": 76.92,
+    "covered_count": 5,
+    "total_regions": 6,
+    "covered_region_ids": [
+      "amazonia",
+      "california",
+      "sahel",
+      "japan",
+      "australia"
+    ],
+    "uncovered_region_ids": [
+      "yucatan"
+    ],
+    "regions": [
+      {
+        "id": "yucatan",
+        "name": "Península de Yucatán",
+        "priority": "Alta",
+        "weight": 3,
+        "covered": false,
+        "nearest_distance_km": 3393.41,
+        "nearest_satellite": "SAT-07",
+        "radius_km": 300.0,
+        "lat": 20.5,
+        "lon": -89.0
+      },
+      {
+        "id": "amazonia",
+        "name": "Amazonía brasileña",
+        "priority": "Alta",
+        "weight": 3,
+        "covered": true,
+        "nearest_distance_km": 171.71,
+        "nearest_satellite": "SAT-01",
+        "radius_km": 300.0,
+        "lat": -3.5,
+        "lon": -62.0
+      },
+      {
+        "id": "california",
+        "name": "California",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 136.43,
+        "nearest_satellite": "SAT-07",
+        "radius_km": 300.0,
+        "lat": 36.8,
+        "lon": -119.4
+      },
+      {
+        "id": "sahel",
+        "name": "Región del Sahel",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 275.02,
+        "nearest_satellite": "SAT-04",
+        "radius_km": 300.0,
+        "lat": 15.0,
+        "lon": 0.0
+      },
+      {
+        "id": "japan",
+        "name": "Japón",
+        "priority": "Media",
+        "weight": 2,
+        "covered": true,
+        "nearest_distance_km": 247.19,
+        "nearest_satellite": "SAT-08",
+        "radius_km": 300.0,
+        "lat": 36.0,
+        "lon": 138.0
+      },
+      {
+        "id": "australia",
+        "name": "Interior de Australia",
+        "priority": "Normal",
+        "weight": 1,
+        "covered": true,
+        "nearest_distance_km": 197.03,
+        "nearest_satellite": "SAT-03",
+        "radius_km": 300.0,
+        "lat": -25.0,
+        "lon": 133.0
+      }
+    ],
+    "validation": {
+      "valid": true,
+      "violations": [],
+      "violation_count": 0,
+      "errors": []
+    },
+    "valid": true,
+    "observation_radius_km": 300.0,
+    "status": "partial"
+  },
+  "history": [
+    {
+      "generation": 0,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 1,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 2,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 3,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 4,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 5,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 6,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 7,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 8,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 9,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 10,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 11,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 12,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 13,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 14,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 15,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 16,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 17,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 18,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 19,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 20,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 21,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 22,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 23,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 24,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 25,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 26,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 27,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 28,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 29,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 30,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 31,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 32,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 33,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 34,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 35,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 36,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 37,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 38,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 39,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 40,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 41,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 42,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 43,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 44,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 45,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 46,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 47,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 48,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 49,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 50,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 51,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 52,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 53,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 54,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 55,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 56,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 57,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 58,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 59,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 60,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 61,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 62,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 63,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 64,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 65,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 66,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 67,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 68,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 69,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 70,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 71,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 72,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 73,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 74,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 75,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 76,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 77,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 78,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 79,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 80,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 81,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 82,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 83,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 84,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 85,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 86,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 87,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 88,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 89,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 90,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 91,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 92,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 93,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 94,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 95,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 96,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 97,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 98,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 99,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 100,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 101,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 102,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 103,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 104,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 105,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 106,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 107,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 108,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 109,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 110,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 111,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 112,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 113,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 114,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 115,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 116,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 117,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 118,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 119,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    },
+    {
+      "generation": 120,
+      "best_fitness": 76.9231,
+      "best_so_far": 76.9231,
+      "coverage_pct": 76.92,
+      "covered_regions": 5,
+      "valid": true
+    }
+  ],
+  "parameters": {
+    "generations": 120,
+    "population_size": 70,
+    "mutation_rate": 0.22,
+    "seed": 44,
+    "satellite_count": 8,
+    "sampling_attempts": 500,
+    "directed_probability": 0.82,
+    "directed_std_deg": 2.0,
+    "observation_radius_km": 300.0,
+    "requested_seed": 44
+  },
+  "scenario": {
+    "regions": [
+      {
+        "id": "yucatan",
+        "name": "Península de Yucatán",
+        "lat": 20.5,
+        "lon": -89.0,
+        "priority": "Alta",
+        "weight": 3
+      },
+      {
+        "id": "amazonia",
+        "name": "Amazonía brasileña",
+        "lat": -3.5,
+        "lon": -62.0,
+        "priority": "Alta",
+        "weight": 3
+      },
+      {
+        "id": "california",
+        "name": "California",
+        "lat": 36.8,
+        "lon": -119.4,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "sahel",
+        "name": "Región del Sahel",
+        "lat": 15.0,
+        "lon": 0.0,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "japan",
+        "name": "Japón",
+        "lat": 36.0,
+        "lon": 138.0,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "australia",
+        "name": "Interior de Australia",
+        "lat": -25.0,
+        "lon": 133.0,
+        "priority": "Normal",
+        "weight": 1
+      }
+    ],
+    "restricted_zones": [
+      {
+        "id": "atlantic",
+        "name": "Atlántico Norte",
+        "lat": 45.0,
+        "lon": -35.0,
+        "radius_deg": 12.0,
+        "kind": "Desechos espaciales"
+      },
+      {
+        "id": "south_pacific",
+        "name": "Pacífico Sur",
+        "lat": -30.0,
+        "lon": -120.0,
+        "radius_deg": 10.0,
+        "kind": "Desechos espaciales"
+      },
+      {
+        "id": "north_polar",
+        "name": "Región polar norte",
+        "lat": 78.0,
+        "lon": 30.0,
+        "radius_deg": 8.0,
+        "kind": "Desechos espaciales"
+      },
+      {
+        "id": "stress_yucatan",
+        "name": "Zona experimental sobre Yucatán",
+        "lat": 20.5,
+        "lon": -89.0,
+        "radius_deg": 6.0,
+        "kind": "Restricción experimental"
+      }
+    ],
+    "occupied_objects": [
+      {
+        "id": "object_a",
+        "name": "Objeto A",
+        "lat": 10.0,
+        "lon": 45.0,
+        "radius_deg": 5.0,
+        "kind": "Posición ocupada"
+      },
+      {
+        "id": "object_b",
+        "name": "Objeto B",
+        "lat": -15.0,
+        "lon": 110.0,
+        "radius_deg": 5.0,
+        "kind": "Posición ocupada"
+      }
+    ]
+  },
+  "experiment": {
+    "label": "reduced_seed_44",
+    "duration_seconds": 1.147652,
+    "executed_at_utc": "2026-10-25T03:24:53.981474+00:00"
+  }
+}

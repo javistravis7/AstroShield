@@ -1,0 +1,108 @@
+{
+  "status": "generation_failed",
+  "error": "Se agotaron 500 intentos y los centros regionales sin generar una posición válida. Esto no demuestra inviabilidad matemática; revisa el escenario o prueba otra semilla.",
+  "schema_version": 2,
+  "parameters": {
+    "generations": 2,
+    "population_size": 4,
+    "mutation_rate": 0.22,
+    "seed": 42,
+    "satellite_count": 8,
+    "sampling_attempts": 500,
+    "directed_probability": 0.82,
+    "directed_std_deg": 2.0,
+    "observation_radius_km": 300.0,
+    "requested_seed": 42
+  },
+  "scenario": {
+    "regions": [
+      {
+        "id": "yucatan",
+        "name": "Península de Yucatán",
+        "lat": 20.5,
+        "lon": -89.0,
+        "priority": "Alta",
+        "weight": 3
+      },
+      {
+        "id": "amazonia",
+        "name": "Amazonía brasileña",
+        "lat": -3.5,
+        "lon": -62.0,
+        "priority": "Alta",
+        "weight": 3
+      },
+      {
+        "id": "california",
+        "name": "California",
+        "lat": 36.8,
+        "lon": -119.4,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "sahel",
+        "name": "Región del Sahel",
+        "lat": 15.0,
+        "lon": 0.0,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "japan",
+        "name": "Japón",
+        "lat": 36.0,
+        "lon": 138.0,
+        "priority": "Media",
+        "weight": 2
+      },
+      {
+        "id": "australia",
+        "name": "Interior de Australia",
+        "lat": -25.0,
+        "lon": 133.0,
+        "priority": "Normal",
+        "weight": 1
+      }
+    ],
+    "restricted_zones": [
+      {
+        "id": "block-0",
+        "name": "Bloqueo hemisférico 0",
+        "lat": 0,
+        "lon": 0,
+        "radius_deg": 100
+      },
+      {
+        "id": "block-1",
+        "name": "Bloqueo hemisférico 1",
+        "lat": 0,
+        "lon": 180,
+        "radius_deg": 100
+      }
+    ],
+    "occupied_objects": [
+      {
+        "id": "object_a",
+        "name": "Objeto A",
+        "lat": 10.0,
+        "lon": 45.0,
+        "radius_deg": 5.0,
+        "kind": "Posición ocupada"
+      },
+      {
+        "id": "object_b",
+        "name": "Objeto B",
+        "lat": -15.0,
+        "lon": 110.0,
+        "radius_deg": 5.0,
+        "kind": "Posición ocupada"
+      }
+    ]
+  },
+  "experiment": {
+    "label": "blocked_sphere_admitted_radii",
+    "duration_seconds": 0.002134,
+    "executed_at_utc": "2026-10-25T03:24:59.539478+00:00"
+  }
+}

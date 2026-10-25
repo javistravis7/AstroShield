@@ -1,0 +1,29 @@
+{
+  "code_commit": "e5929ae",
+  "note": "SHA-256 of implementation and verification scripts at delivery; original CSS and requirements were not edited.",
+  "sha256": {
+    "app.py": "720fa1393405b9458f360cfae98f4b4208cf0050e9c4cde76e5d3ac694f38785",
+    "requirements.txt": "f665af25f90e78f7658e0a81881037667f427ab0c797bd05568087ef88931009",
+    "src/__init__.py": "1058ea5d3cd3ec956ef7e7c155c7d0f2d5c088e1db9131083b65af0228f64aa8",
+    "src/core/__init__.py": "df2482661550596f0b1264805fb836c59225d9aae5f52166c63754dc54994b4e",
+    "src/core/constraints.py": "7c942c939fcbb5a443c690a571fb92be7b7498a433bccad71a0f4aa4e96c3950",
+    "src/core/fitness.py": "98a2073f9d1859065bb2014f9844a5d7ea963ade0b9ca6b58a1ef92bed83d542",
+    "src/core/genetic_algorithm.py": "3a15bbc2b010dce2853a258ced7fb6d9c217070b888bb6e7af0733f59a949d67",
+    "src/core/validation.py": "faaa4df7c1424b35993a94bf61c202ceed9acc7d3c7b36442395be457c072d65",
+    "src/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/data/scenario.py": "e03448516e0ba2a81dc34e982b42a25760ac49065d71459a7fdd1153958f8064",
+    "src/experiments.py": "430d2b6aab528e402efcf75887635e9f83aa45a9bf1e8905c2f8b43c60913489",
+    "src/main.py": "a1902d52c3ff55a21baf3940d7c023d078864e166a60ff47e228eee65a19ed56",
+    "src/visualization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/visualization/exporter.py": "c513b2837667b88d51cea5ad94f95bd0e6489b7d298888524935221a93fae833",
+    "tests/browser_check.cjs": "b3d9c048931ff47e1a92a488a485061a60cf23c7c91278c5ae865084503b482f",
+    "tests/test_constraints.py": "8bac4ebf9afee0bac8bad942d51ef1278af1ff5c2f3fafb19aa26e1879fa4de2",
+    "tests/test_evolution.py": "eacafedcd87e5980a2e46259feaf217edad055644c5e68e153c67e631d27c599",
+    "tests/test_fitness.py": "dc1c40c6f6e139de588b0a52c72aae40e9f0c5051a884c9dce8e68e2184cee79",
+    "tests/test_validation_api.py": "ede0dc8fea49e5521d27c0a43311675c1d36938250bc9f831cd9a0e66c894035",
+    "tests/ui.test.cjs": "fe780ee0d56a1f85739b93ec53dec0f93eb064b4be49810aa1be158e8be14d48",
+    "web/css/styles.css": "15678d12739d47bc4eaf64899709a0de9c7776dc996c9ac24b35985a23e3a37e",
+    "web/index.html": "0a23ade10c4012a9b5745f768b3c9aba8bfe820a676accdfd0a62031a5973ba5",
+    "web/js/app.js": "2f1079df2662340b8046ba2b2c85c50fcb0f807698036fdef17b5af8a675e5eb"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "started_at_utc": "2026-10-25T03:27:13.386Z",
+  "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "checks": [],
+  "errors": [],
+  "status": "failed_or_unavailable",
+  "error": "Error: CDP timeout: Page.enable"
+}
