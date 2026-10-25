@@ -4,6 +4,15 @@ AstroShield busca una configuración de **ocho satélites** que observe seis reg
 
 Es una **simulación educativa**: cada satélite representa un punto geográfico de observación, no una órbita real. Sirve para explicar búsqueda, prioridades y restricciones; no predice trayectorias ni garantiza cobertura continua en el tiempo.
 
+## Integrantes del proyecto
+
+| Integrante |
+|---|
+| Natalia Puc Huchim |
+| Javier Noh Uc |
+| Mateo Isai Moo Huchin |
+| Jafet Jisafat Martín Arjona |
+
 ## 1. Tecnologías y requisitos
 
 | Componente | Uso y requisito real |
