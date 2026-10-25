@@ -61,21 +61,21 @@ function drawChart(history){
   const w=rect.width,h=rect.height,p={l:38,r:12,t:14,b:28};ctx.clearRect(0,0,w,h);
   if(!history?.length){$('chart-empty').style.display='grid';return;} $('chart-empty').style.display='none';
   const vals=history.map(x=>x.best_so_far);const min=Math.min(0,...vals),max=Math.max(100,...vals);const x=i=>p.l+i/Math.max(1,vals.length-1)*(w-p.l-p.r);const y=v=>h-p.b-(v-min)/(max-min||1)*(h-p.t-p.b);
-  ctx.strokeStyle='#183322';ctx.lineWidth=1;ctx.fillStyle='#65836d';ctx.font='9px IBM Plex Mono, monospace';
+  ctx.strokeStyle='#29384b';ctx.lineWidth=1;ctx.fillStyle='#a2afc1';ctx.font='9px IBM Plex Mono, monospace';
   for(let i=0;i<=4;i++){const yy=p.t+i*(h-p.t-p.b)/4;ctx.beginPath();ctx.moveTo(p.l,yy);ctx.lineTo(w-p.r,yy);ctx.stroke();ctx.fillText(String(Math.round(max-(max-min)*i/4)),3,yy+3)}
-  ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.lineTo(x(vals.length-1),h-p.b);ctx.lineTo(x(0),h-p.b);ctx.closePath();ctx.fillStyle='rgba(57,255,136,.07)';ctx.fill();
-  ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.strokeStyle='#39ff88';ctx.lineWidth=2;ctx.shadowColor='#39ff88';ctx.shadowBlur=7;ctx.stroke();ctx.shadowBlur=0;
-  ctx.fillStyle='#65836d';ctx.fillText('GENERACIÓN 0',p.l,h-7);ctx.textAlign='right';ctx.fillText(`GENERACIÓN ${history[history.length-1].generation}`,w-p.r,h-7);ctx.textAlign='left';
+  ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.lineTo(x(vals.length-1),h-p.b);ctx.lineTo(x(0),h-p.b);ctx.closePath();ctx.fillStyle='rgba(57,255,136,.04)';ctx.fill();
+  ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.strokeStyle='#39ff88';ctx.lineWidth=2;ctx.shadowColor='#39ff88';ctx.shadowBlur=2;ctx.stroke();ctx.shadowBlur=0;
+  ctx.fillStyle='#a2afc1';ctx.fillText('GENERACIÓN 0',p.l,h-7);ctx.textAlign='right';ctx.fillText(`GENERACIÓN ${history[history.length-1].generation}`,w-p.r,h-7);ctx.textAlign='left';
   $('chart-summary').textContent=`${history.length} puntos de la ejecución completa · final ${vals[vals.length-1].toFixed(2)}`;
 }
 
 class GlobeView{
  constructor(container){
-  this.container=container;this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#050907');
+  this.container=container;this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#070b12');
   this.camera=new THREE.PerspectiveCamera(42,container.clientWidth/container.clientHeight,.1,1000);this.camera.position.set(0,0,4.4);
   this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));this.renderer.setSize(container.clientWidth,container.clientHeight);this.renderer.outputColorSpace=THREE.SRGBColorSpace;container.prepend(this.renderer.domElement);
   this.root=new THREE.Group();this.scene.add(this.root);this.earthGroup=new THREE.Group();this.root.add(this.earthGroup);
-  this.scene.add(new THREE.AmbientLight(0x8ab99a,2.0));const light=new THREE.DirectionalLight(0x9effc1,2.7);light.position.set(4,3,5);this.scene.add(light);
+  this.scene.add(new THREE.AmbientLight(0xa9b8ce,1.5));const light=new THREE.DirectionalLight(0xc4d3e8,1.8);light.position.set(4,3,5);this.scene.add(light);
   this.makeEarth();this.makeGrid();this.makeStars();this.drag={active:false,x:0,y:0};this.autoRotate=true;
   this.renderer.domElement.addEventListener('pointerdown',e=>{this.drag.active=true;this.drag.x=e.clientX;this.drag.y=e.clientY;this.autoRotate=false;this.renderer.domElement.setPointerCapture(e.pointerId)});
   this.renderer.domElement.addEventListener('pointermove',e=>{if(!this.drag.active)return;this.root.rotation.y+=(e.clientX-this.drag.x)*.006;this.root.rotation.x+=(e.clientY-this.drag.y)*.006;this.drag.x=e.clientX;this.drag.y=e.clientY});
@@ -83,15 +83,15 @@ class GlobeView{
   this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(container);this.animate();
  }
  makeEarth(){
-  const geo=new THREE.SphereGeometry(1,72,48);const mat=new THREE.MeshPhongMaterial({color:0x123e2a,emissive:0x06190e,emissiveIntensity:.8,shininess:20,wireframe:false});this.earth=new THREE.Mesh(geo,mat);this.earthGroup.add(this.earth);
-  const wire=new THREE.Mesh(new THREE.SphereGeometry(1.003,36,24),new THREE.MeshBasicMaterial({color:0x2b8852,wireframe:true,transparent:true,opacity:.12}));this.earthGroup.add(wire);
-  const glow=new THREE.Mesh(new THREE.SphereGeometry(1.055,48,32),new THREE.MeshBasicMaterial({color:0x19d66b,transparent:true,opacity:.045,side:THREE.BackSide}));this.earthGroup.add(glow);
+  const geo=new THREE.SphereGeometry(1,72,48);const mat=new THREE.MeshPhongMaterial({color:0x132035,emissive:0x050b16,emissiveIntensity:.35,shininess:12,wireframe:false});this.earth=new THREE.Mesh(geo,mat);this.earthGroup.add(this.earth);
+  const wire=new THREE.Mesh(new THREE.SphereGeometry(1.003,36,24),new THREE.MeshBasicMaterial({color:0x38516e,wireframe:true,transparent:true,opacity:.08}));this.earthGroup.add(wire);
+  const glow=new THREE.Mesh(new THREE.SphereGeometry(1.055,48,32),new THREE.MeshBasicMaterial({color:0x3d638a,transparent:true,opacity:.015,side:THREE.BackSide}));this.earthGroup.add(glow);
  }
- makeGrid(){const mat=new THREE.LineBasicMaterial({color:0x318a52,transparent:true,opacity:.42});
+ makeGrid(){const mat=new THREE.LineBasicMaterial({color:0x526a85,transparent:true,opacity:.22});
   for(let lat=-60;lat<=60;lat+=30){const pts=[];const phi=THREE.MathUtils.degToRad(90-lat);for(let j=0;j<=180;j++){const theta=j/180*Math.PI*2;pts.push(new THREE.Vector3(-Math.cos(theta)*Math.sin(phi),Math.cos(phi),Math.sin(theta)*Math.sin(phi)))}this.earthGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),mat));}
   for(let lon=0;lon<180;lon+=30){const pts=[];const theta=THREE.MathUtils.degToRad(lon);for(let j=0;j<=180;j++){const phi=j/180*Math.PI;pts.push(new THREE.Vector3(-Math.cos(theta)*Math.sin(phi),Math.cos(phi),Math.sin(theta)*Math.sin(phi)))}this.earthGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),mat));}
  }
- makeStars(){const points=[];for(let i=0;i<850;i++){const v=new THREE.Vector3((Math.random()-.5)*18,(Math.random()-.5)*11,(Math.random()-.5)*12);if(v.length()<2.5)v.multiplyScalar(2);points.push(v)}const geo=new THREE.BufferGeometry().setFromPoints(points);this.scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0x3e8054,size:.018,transparent:true,opacity:.65})))}
+ makeStars(){const points=[];for(let i=0;i<850;i++){const v=new THREE.Vector3((Math.random()-.5)*18,(Math.random()-.5)*11,(Math.random()-.5)*12);if(v.length()<2.5)v.multiplyScalar(2);points.push(v)}const geo=new THREE.BufferGeometry().setFromPoints(points);this.scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0x71849e,size:.018,transparent:true,opacity:.45})))}
  vec(lat,lon,r=1.015){const phi=THREE.MathUtils.degToRad(90-lat),theta=THREE.MathUtils.degToRad(lon+180);return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta))}
  clearMarkers(){for(const obj of [...this.earthGroup.children])if(obj.userData.dynamic){this.earthGroup.remove(obj);obj.geometry?.dispose();obj.material?.dispose()}}
  marker(lat,lon,color,size=0.025,r=1.025){const mesh=new THREE.Mesh(new THREE.SphereGeometry(size,12,10),new THREE.MeshBasicMaterial({color}));mesh.position.copy(this.vec(lat,lon,r));mesh.userData.dynamic=true;this.earthGroup.add(mesh);return mesh.position.clone()}
