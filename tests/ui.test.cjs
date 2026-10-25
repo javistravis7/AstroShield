@@ -106,3 +106,13 @@ test('partial coverage is never labelled objective fulfilled',async()=>{
   assert.match(e('run-status').innerHTML,/COBERTURA PARCIAL/);
   assert.equal(e('solution-state').textContent,'VÁLIDA / PARCIAL');
 });
+
+test('only the violated exclusion is marked when names repeat',()=>{
+  const {element:e,result:r,run}=setup();
+  r.scenario.restricted_zones.push({...r.scenario.restricted_zones[0],id:'other',lat:-45,lon:145});
+  r.metrics.valid=false;r.metrics.validation={valid:false,errors:[],violation_count:1,
+    violations:[{satellite:'s0',zones:['Zona'],zone_ids:['z']}]};
+  run("showView('final')");
+  assert.equal((e('validation-list').innerHTML.match(/CON INFRACCIONES/g)||[]).length,1);
+  assert.equal((e('validation-list').innerHTML.match(/SIN INFRACCIONES/g)||[]).length,1);
+});

@@ -18,16 +18,17 @@ def distance_km(lat1, lon1, lat2, lon2):
 
 def violation_for_position(position, restricted_zones=None, occupied_objects=None):
     """Return list of exclusion-zone names intersected by a satellite position."""
+    return [zone["name"] for zone in _exclusion_hits(position, restricted_zones, occupied_objects)]
+
+
+def _exclusion_hits(position, restricted_zones=None, occupied_objects=None):
     lat, lon = position["lat"], position["lon"]
     zones = RESTRICTED_ZONES if restricted_zones is None else restricted_zones
     objects = OCCUPIED_OBJECTS if occupied_objects is None else occupied_objects
     violations = []
-    for zone in zones:
+    for zone in zones + objects:
         if angular_distance_deg(lat, lon, zone["lat"], zone["lon"]) < zone["radius_deg"]:
-            violations.append(zone["name"])
-    for obj in objects:
-        if angular_distance_deg(lat, lon, obj["lat"], obj["lon"]) < obj["radius_deg"]:
-            violations.append(obj["name"])
+            violations.append(zone)
     return violations
 
 
@@ -64,8 +65,9 @@ def validate_constellation(satellites, restricted_zones=None, occupied_objects=N
         except ValueError as exc:
             errors.append(str(exc))
             continue
-        names = violation_for_position(sat, restricted_zones, occupied_objects)
-        if names:
-            violations.append({"satellite": sat.get("id", "Satélite"), "zones": names})
+        hits = _exclusion_hits(sat, restricted_zones, occupied_objects)
+        if hits:
+            violations.append({"satellite": sat["id"], "zones": [z["name"] for z in hits],
+                               "zone_ids": [z["id"] for z in hits]})
     return {"valid": not violations and not errors, "violations": violations,
             "violation_count": len(violations), "errors": errors}

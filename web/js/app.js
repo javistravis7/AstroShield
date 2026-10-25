@@ -49,7 +49,7 @@ function renderValidation(metrics,scenario){
   const {validation}=metrics;
   const items=[...scenario.restricted_zones,...scenario.occupied_objects];
   $('validation-list').innerHTML=items.map(item=>{
-    const fail=validation.violations.some(v=>v.zones.includes(item.name));
+    const fail=validation.violations.some(v=>v.zone_ids?v.zone_ids.includes(item.id):v.zones.includes(item.name));
     return `<div class="validation-item ${fail?'fail':''}"><div class="validation-icon">${fail?'!':'✓'}</div><div class="validation-copy"><b>${esc(item.name)} — ${fail?'CON INFRACCIONES':'SIN INFRACCIONES'}</b><span>Radio de exclusión ${item.radius_deg}° · centro ${item.lat}°, ${item.lon}°</span></div></div>`;
   }).join('');
   $('validation-footer').textContent=validation.valid?'Resultado: todas las posiciones cumplen las restricciones espaciales.':

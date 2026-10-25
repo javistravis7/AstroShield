@@ -125,3 +125,11 @@ def test_admitted_geographical_boundaries_and_radii():
     assert validate_constellation(sats, [], [])["valid"]
     from src.core.validation import validate_scenario
     validate_scenario(REGIONS, [dict(id="max-radius", name="Máximo", lat=90, lon=180, radius_deg=180)], [])
+
+
+def test_violation_identifies_zone_even_when_names_repeat():
+    zones = [dict(id="near", name="Mismo nombre", lat=20.5, lon=-89., radius_deg=1),
+             dict(id="far", name="Mismo nombre", lat=-20.5, lon=91., radius_deg=1)]
+    validation = validate_constellation(satellites(), zones, [])
+    assert not validation["valid"]
+    assert all(v["zone_ids"] == ["near"] for v in validation["violations"])
