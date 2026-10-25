@@ -1,20 +1,33 @@
 """A compact genetic algorithm for an educational constellation model."""
 import random
+import secrets
 from copy import deepcopy
+from src.core.validation import validate_parameters, validate_scenario
 from src.core.constraints import is_valid_position
 from src.core.fitness import evaluate_constellation
 from src.data.scenario import SATELLITE_COUNT, REGIONS, RESTRICTED_ZONES, OCCUPIED_OBJECTS
 
+SAMPLING_ATTEMPTS = 500
+DIRECTED_PROBABILITY = 0.82
+DIRECTED_STD_DEG = 2.0
+
+
+class GenerationFailure(RuntimeError):
+    """A bounded sampling failure is not a mathematical infeasibility proof."""
+    def __init__(self, message):
+        super().__init__(message)
+        self.result = {"status": "generation_failed", "error": message}
+
 
 def random_position(rng, regions=REGIONS, restricted_zones=RESTRICTED_ZONES, occupied_objects=OCCUPIED_OBJECTS):
     """Generate a valid point, usually near a region to make 300-km coverage discoverable."""
-    for _ in range(500):
-        if rng.random() < 0.82:
+    for _ in range(SAMPLING_ATTEMPTS):
+        if rng.random() < DIRECTED_PROBABILITY:
             region = rng.choice(regions)
-            lat = max(-89.5, min(89.5, rng.gauss(region["lat"], 2.0)))
-            lon = ((rng.gauss(region["lon"], 2.0) + 180) % 360) - 180
+            lat = max(-90, min(90, rng.gauss(region["lat"], DIRECTED_STD_DEG)))
+            lon = ((rng.gauss(region["lon"], DIRECTED_STD_DEG) + 180) % 360) - 180
         else:
-            lat = rng.uniform(-85, 85)
+            lat = rng.uniform(-90, 90)
             lon = rng.uniform(-180, 180)
         point = {"lat": lat, "lon": lon}
         if is_valid_position(point, restricted_zones, occupied_objects):
@@ -24,7 +37,8 @@ def random_position(rng, regions=REGIONS, restricted_zones=RESTRICTED_ZONES, occ
         point = {"lat": region["lat"], "lon": region["lon"]}
         if is_valid_position(point, restricted_zones, occupied_objects):
             return point
-    raise RuntimeError("No se pudo generar una posición válida con las restricciones actuales.")
+    raise GenerationFailure("Se agotaron 500 intentos y los centros regionales sin generar una posición válida. "
+                            "Esto no demuestra inviabilidad matemática; revisa el escenario o prueba otra semilla.")
 
 
 def make_individual(rng, satellite_count=SATELLITE_COUNT, regions=REGIONS,
@@ -50,24 +64,27 @@ def crossover(parent_a, parent_b, rng):
     return raw
 
 
-def optimize(generations=120, population_size=70, mutation_rate=0.22, seed=None,
+def _optimize(generations=120, population_size=70, mutation_rate=0.22, seed=None,
              satellite_count=SATELLITE_COUNT, regions=None, restricted_zones=None, occupied_objects=None):
     """Return best solution, generation history, initial solution and run parameters."""
-    if generations < 1 or population_size < 4:
-        raise ValueError("Usa al menos 1 generación y una población de 4 individuos.")
-    if not 0 <= mutation_rate <= 1:
-        raise ValueError("La tasa de mutación debe estar entre 0 y 1.")
+    validate_parameters(generations, population_size, mutation_rate, seed, satellite_count)
     regions = deepcopy(REGIONS if regions is None else regions)
     restricted_zones = deepcopy(RESTRICTED_ZONES if restricted_zones is None else restricted_zones)
     occupied_objects = deepcopy(OCCUPIED_OBJECTS if occupied_objects is None else occupied_objects)
+    validate_scenario(regions, restricted_zones, occupied_objects)
     rng = random.Random(seed)
     population = [make_individual(rng, satellite_count, regions, restricted_zones, occupied_objects)
                   for _ in range(population_size)]
     initial = deepcopy(max(population, key=lambda x: evaluate_constellation(x, regions, restricted_zones=restricted_zones, occupied_objects=occupied_objects)["fitness"]))
     history = []
 
+    scores = {}
     def score(ind):
-        return evaluate_constellation(ind, regions, restricted_zones=restricted_zones, occupied_objects=occupied_objects)["fitness"]
+        key = tuple((s["lat"], s["lon"]) for s in ind)
+        if key not in scores:
+            scores[key] = evaluate_constellation(ind, regions, restricted_zones=restricted_zones,
+                                                  occupied_objects=occupied_objects)["fitness"]
+        return scores[key]
 
     best = deepcopy(max(population, key=score))
     for generation in range(generations + 1):
@@ -91,8 +108,33 @@ def optimize(generations=120, population_size=70, mutation_rate=0.22, seed=None,
             child = mutate(child, rng, mutation_rate, regions, restricted_zones, occupied_objects)
             next_population.append(child)
         population = next_population
+        scores.clear()
     metrics = evaluate_constellation(best, regions, restricted_zones=restricted_zones, occupied_objects=occupied_objects)
-    return {"best": best, "initial": initial, "metrics": metrics, "history": history,
+    return {"schema_version": 2, "status": metrics["status"], "best": best, "initial": initial,
+            "initial_metrics": evaluate_constellation(initial, regions, restricted_zones=restricted_zones,
+                                                      occupied_objects=occupied_objects),
+            "metrics": metrics, "history": history,
             "parameters": {"generations": generations, "population_size": population_size,
                            "mutation_rate": mutation_rate, "seed": seed, "satellite_count": satellite_count},
             "scenario": {"regions": regions, "restricted_zones": restricted_zones, "occupied_objects": occupied_objects}}
+
+
+def optimize(generations=120, population_size=70, mutation_rate=0.22, seed=None,
+             satellite_count=SATELLITE_COUNT, regions=None, restricted_zones=None, occupied_objects=None):
+    validate_parameters(generations, population_size, mutation_rate, seed, satellite_count)
+    actual_seed = secrets.randbits(32) if seed is None else seed
+    scenario = deepcopy({"regions": REGIONS if regions is None else regions,
+                         "restricted_zones": RESTRICTED_ZONES if restricted_zones is None else restricted_zones,
+                         "occupied_objects": OCCUPIED_OBJECTS if occupied_objects is None else occupied_objects})
+    validate_scenario(**scenario)
+    parameters = {"generations": generations, "population_size": population_size,
+                  "mutation_rate": mutation_rate, "seed": actual_seed, "satellite_count": satellite_count}
+    sampling = dict(sampling_attempts=SAMPLING_ATTEMPTS, directed_probability=DIRECTED_PROBABILITY,
+                    directed_std_deg=DIRECTED_STD_DEG, observation_radius_km=300.0, requested_seed=seed)
+    try:
+        result = _optimize(**parameters, **scenario)
+    except GenerationFailure as exc:
+        exc.result.update(schema_version=2, parameters={**parameters, **sampling}, scenario=scenario)
+        raise
+    result["parameters"].update(sampling)
+    return result

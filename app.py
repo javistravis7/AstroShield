@@ -1,10 +1,14 @@
 """Flask API and static web server for AstroShield."""
 from flask import Flask, jsonify, request, send_from_directory
-from src.core.genetic_algorithm import optimize
+from src.core.genetic_algorithm import optimize, GenerationFailure
+from threading import Lock
+from werkzeug.exceptions import RequestEntityTooLarge
 from src.data.scenario import REGIONS, RESTRICTED_ZONES, OCCUPIED_OBJECTS, SATELLITE_COUNT, OBSERVATION_RADIUS_KM
 from src.visualization.exporter import save_result
 
 app = Flask(__name__, static_folder="web", static_url_path="")
+app.config["MAX_CONTENT_LENGTH"] = 256 * 1024
+optimization_lock = Lock()
 
 @app.get("/")
 def index():
@@ -17,19 +21,23 @@ def scenario():
 
 @app.post("/api/optimize")
 def run_optimizer():
-    data = request.get_json(silent=True) or {}
+    if not optimization_lock.acquire(blocking=False):
+        return jsonify({"error": "Ya hay una optimización en curso. Espera a que termine."}), 409
     try:
-        generations = int(data.get("generations", 120))
-        population = int(data.get("population_size", 70))
-        mutation = float(data.get("mutation_rate", 0.22))
-        seed_value = data.get("seed", None)
-        seed = None if seed_value in (None, "") else int(seed_value)
-        if not 1 <= generations <= 1000:
-            raise ValueError("Las generaciones deben estar entre 1 y 1000.")
-        if not 4 <= population <= 300:
-            raise ValueError("La población debe estar entre 4 y 300.")
-        if not 0 <= mutation <= 1:
-            raise ValueError("La mutación debe estar entre 0 y 1.")
+        data = request.get_json(silent=True)
+        if not isinstance(data, dict):
+            raise ValueError("Envía un objeto JSON válido; usa {} para los parámetros predeterminados.")
+        allowed = {"generations", "population_size", "mutation_rate", "seed", "regions",
+                   "restricted_zones", "occupied_objects"}
+        if set(data) - allowed:
+            raise ValueError("Campos desconocidos: " + ", ".join(sorted(set(data) - allowed)))
+        for field in ("regions", "restricted_zones", "occupied_objects"):
+            if field in data and data[field] is None:
+                raise ValueError(f"{field}: usa una lista, no null.")
+        generations = data.get("generations", 120)
+        population = data.get("population_size", 70)
+        mutation = data.get("mutation_rate", 0.22)
+        seed = data.get("seed")
         regions = data.get("regions")
         restricted_zones = data.get("restricted_zones")
         occupied_objects = data.get("occupied_objects")
@@ -37,11 +45,22 @@ def run_optimizer():
                           regions=regions, restricted_zones=restricted_zones, occupied_objects=occupied_objects)
         result["saved_to"] = save_result(result)
         return jsonify(result)
-    except (ValueError, RuntimeError) as exc:
+    except RequestEntityTooLarge as exc:
+        return too_large(exc)
+    except GenerationFailure as exc:
+        return jsonify(exc.result), 422
+    except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
     except Exception:
         app.logger.exception("Error inesperado al optimizar")
         return jsonify({"error": "Ocurrió un error interno. Revisa la terminal del servidor."}), 500
+    finally:
+        optimization_lock.release()
+
+
+@app.errorhandler(413)
+def too_large(_error):
+    return jsonify({"error": "El JSON supera el límite admitido de 256 KiB."}), 400
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)

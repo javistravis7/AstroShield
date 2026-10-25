@@ -3,7 +3,7 @@ from src.data.scenario import REGIONS
 
 
 def test_satellites_at_region_centers_cover_all_regions():
-    satellites = [{"id": f"SAT-{i+1:02d}", "lat": r["lat"], "lon": r["lon"]} for i, r in enumerate(REGIONS)]
+    satellites = [{"id": f"SAT-{i+1:02d}", "lat": r["lat"], "lon": r["lon"]} for i, r in enumerate(REGIONS + REGIONS[:2])]
     result = evaluate_constellation(satellites)
     assert result["covered_count"] == 6
     assert result["weighted_coverage_pct"] == 100.0
